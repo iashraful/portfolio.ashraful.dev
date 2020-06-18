@@ -1,11 +1,11 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Container, Card } from 'components/common';
-import starIcon from 'components/landing/OpenSource/node_modules/assets/icons/star.svg';
-import forkIcon from 'components/landing/OpenSource/node_modules/assets/icons/fork.svg';
+import starIcon from 'assets/icons/star.svg';
+import forkIcon from 'assets/icons/fork.svg';
 import { Wrapper, Grid, Item, Content, Stats } from './styles';
 
-export const Projects = () => {
+export const OpenSource = () => {
   const {
     github: {
       viewer: {

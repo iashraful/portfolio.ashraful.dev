@@ -12,14 +12,14 @@ export const Skills = () => (
       </Thumbnail>
       <Details>
         <h1>Hi There!</h1>
-        <p>
+        <div>
           I have following skills,
           <p>
             <code>Python</code>, <code>Django</code>, <code>Flask</code>, <code>REST API</code>, <code>GraphQL</code>
             <br />
             <code>JavaScript</code>, <code>NodeJS</code>, <code>VueJS</code>, <code>React</code>
           </p>
-        </p>
+        </div>
         <Button as={AnchorLink} href="#contact">
           Hire me
         </Button>
