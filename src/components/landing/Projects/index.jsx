@@ -1,66 +1,41 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import { Container, Card } from 'components/common';
-import starIcon from 'components/landing/OpenSource/node_modules/assets/icons/star.svg';
-import forkIcon from 'components/landing/OpenSource/node_modules/assets/icons/fork.svg';
-import { Wrapper, Grid, Item, Content, Stats } from './styles';
+import { Wrapper, Grid, Item, Content, Tags, Tag } from './styles';
+import projectData from './data';
 
-export const Projects = () => {
-  const {
-    github: {
-      viewer: {
-        repositories: { edges },
-      },
-    },
-  } = useStaticQuery(
-    graphql`
-      {
-        github {
-          viewer {
-            repositories(first: 8, orderBy: { field: STARGAZERS, direction: DESC }) {
-              edges {
-                node {
-                  id
-                  name
-                  url
-                  description
-                  stargazers {
-                    totalCount
-                  }
-                  forkCount
-                }
-              }
-            }
-          }
-        }
-      }
-    `
-  );
-  return (
-    <Wrapper as={Container} id="projects">
-      <h2>Open Source</h2>
-      <Grid>
-        {edges.map(({ node }) => (
-          <Item key={node.id} as="a" href={node.url} target="_blank" rel="noopener noreferrer">
-            <Card>
-              <Content>
-                <h4>{node.name}</h4>
-                <p>{node.description}</p>
-              </Content>
-              <Stats>
-                <div>
-                  <img src={starIcon} alt="stars" />
-                  <span>{node.stargazers.totalCount}</span>
-                </div>
-                <div>
-                  <img src={forkIcon} alt="forks" />
-                  <span>{node.forkCount}</span>
-                </div>
-              </Stats>
-            </Card>
-          </Item>
-        ))}
-      </Grid>
-    </Wrapper>
-  );
-};
+function RenderTag(props) {
+  const { tags } = props;
+  const tagList = tags.map(tag => <Tag key={tag}>{tag}</Tag>);
+  return <div>{tagList}</div>;
+}
+
+async function getImage(path) {
+  // eslint-disable-next-line no-console
+  console.log(path);
+  const image = await import(path);
+  return image;
+}
+
+const renderEachProject = projectData.map(project => (
+  <Item as="a" href={project.website} target="_blank" rel="noopener noreferrer" key={project.website}>
+    <Card>
+      <Content>
+        <img src={getImage(project.cover)} alt={project.name}></img>
+        <h4>{project.name}</h4>
+        <p>{project.description}</p>
+      </Content>
+      <Tags>
+        <div>
+          <RenderTag tags={project.tags} />
+        </div>
+      </Tags>
+    </Card>
+  </Item>
+));
+
+export const Projects = () => (
+  <Wrapper as={Container} id="projects">
+    <h2>Projects</h2>
+    <Grid>{renderEachProject}</Grid>
+  </Wrapper>
+);

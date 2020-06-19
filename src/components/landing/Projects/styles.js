@@ -39,23 +39,28 @@ export const Content = styled.div`
   padding: 1rem 0;
 `;
 
-export const Stats = styled.div`
+export const Tags = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
 
   div {
     display: flex;
-    &:first-child {
-      margin-right: 0.5rem;
-    }
-
-    img {
-      margin: 0;
-    }
+    flex-wrap: wrap;
+    margin-right: 0.5rem;
+    margin-bottom: 2px;
 
     span {
       color: #000;
       margin-left: 0.5rem;
+      text-align: center;
     }
   }
+`;
+
+export const Tag = styled.div`
+  background-color: #0074d9;
+  color: #fff;
+  border-radius: 2px;
+  padding: 2px 10px;
 `;
