@@ -13,4 +13,11 @@ export default [
     website: 'http://theashraful.xyz:5000/',
     tags: ['Dev.to', 'REST API', 'VueJS', 'PWA'],
   },
+  {
+    name: 'Tic Tac Toe',
+    description: "It's a realtime game built with VueJS and socket IO.",
+    cover: './images/tic-tac-toe.png',
+    website: 'https://tic-tac-toe.ashraful.dev',
+    tags: ['Game Development', 'Realtime', 'VueJS', 'Socket IO'],
+  },
 ];
